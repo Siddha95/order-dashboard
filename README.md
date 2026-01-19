@@ -1,73 +1,84 @@
-# React + TypeScript + Vite
+# Order Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dashboard per la gestione degli ordini costruita con React, TypeScript e Vite.
 
-Currently, two official plugins are available:
+## 🚀 Funzionalità
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Autenticazione**: Sistema di login con protezione delle rotte private
+- **Lista Ordini**: Visualizzazione tabellare di tutti gli ordini con cliente, importo, stato e data
+- **Dettaglio Ordine**: Pagina dedicata per ogni singolo ordine
+- **Lazy Loading**: Caricamento ottimizzato dei componenti per migliori performance
 
-## React Compiler
+## 🛠️ Tecnologie
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 19** - Libreria UI
+- **TypeScript** - Type safety
+- **Vite** - Build tool veloce
+- **React Router DOM** - Routing
+- **TanStack Query** - Data fetching e caching
+- **Vitest** - Testing
+- **Docker** - Containerizzazione
 
-## Expanding the ESLint configuration
+## 📦 Installazione
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Clona il repository
+git clone https://github.com/Siddha95/order-dashboard.git
+cd order-dashboard
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Installa le dipendenze
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Comandi Disponibili
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Avvia il server di sviluppo
+npm run dev
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build per produzione
+npm run build
+
+# Anteprima build di produzione
+npm run preview
+
+# Esegui i test
+npm test
+
+# Test con interfaccia grafica
+npm run test:ui
+
+# Copertura dei test
+npm run coverage
+
+# Linting
+npm run lint
 ```
+
+## 🐳 Docker
+
+```bash
+# Build e avvio con Docker Compose
+docker-compose up --build
+
+# L'applicazione sarà disponibile su http://localhost:8080
+```
+
+## 📁 Struttura del Progetto
+
+```
+src/
+├── components/       # Componenti riutilizzabili (es. PrivateRoute)
+├── features/         # Feature modules
+│   ├── auth/         # Autenticazione (Login, AuthContext)
+│   └── orders/       # Gestione ordini (OrderList, OrderDetail)
+├── services/         # Servizi API
+├── tests/            # Test
+├── types/            # Definizioni TypeScript
+├── App.tsx           # Componente principale con routing
+└── main.tsx          # Entry point
+```
+
+## 📄 Licenza
+
+MIT
