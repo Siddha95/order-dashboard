@@ -1,22 +1,30 @@
-// features/orders/OrderList.tsx
+/**
+ * OrderList.tsx
+ * Componente per visualizzare la lista di tutti gli ordini.
+ * Mostra una tabella con cliente, importo, stato, data e azioni.
+ */
 import { Link } from 'react-router-dom';
 import { useOrders } from './hooks/useOrders';
 import { useAuth } from '../auth/AuthContext';
 
 export const OrderList = () => {
+  // Fetch degli ordini con React Query (gestisce cache, loading, errori)
   const { data: orders, isLoading, error } = useOrders();
   const { logout } = useAuth();
 
+  // Stati di loading ed errore
   if (isLoading) return <div>Loading orders...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
+      {/* Header con titolo e logout */}
       <header>
         <h1>Orders Dashboard</h1>
         <button onClick={logout}>Logout</button>
       </header>
       
+      {/* Tabella ordini */}
       <table>
         <thead>
           <tr>
@@ -28,6 +36,7 @@ export const OrderList = () => {
           </tr>
         </thead>
         <tbody>
+          {/* Mappa ogni ordine in una riga della tabella */}
           {orders?.map(order => (
             <tr key={order.id}>
               <td>{order.customer}</td>
@@ -35,6 +44,7 @@ export const OrderList = () => {
               <td>{order.status}</td>
               <td>{order.date}</td>
               <td>
+                {/* Link alla pagina di dettaglio ordine */}
                 <Link to={`/orders/${order.id}`}>View</Link>
               </td>
             </tr>
@@ -45,4 +55,5 @@ export const OrderList = () => {
   );
 };
 
+// Export default per lazy loading
 export default OrderList;
